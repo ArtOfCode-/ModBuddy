@@ -1,0 +1,2 @@
+module SedeQueriesHelper
+end
