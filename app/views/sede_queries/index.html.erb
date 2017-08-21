@@ -8,6 +8,7 @@
       <th>Data URL</th>
       <th>Last retrieved</th>
       <th>Owner</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -15,8 +16,9 @@
       <tr>
         <td class="text-muted"><%= q.id %></td>
         <td><%= q.url %></td>
-        <td><%= time_ago_in_words q.last_fetched %> ago</td>
+        <td><%= time_ago_in_words q.last_fetch %> ago</td>
         <td><%= User.with_role(:query_owner, q).first.id %></td>
+        <td><%= link_to 'Details', sede_query_path(q) %></td>
       </tr>
     <% end %>
   </tbody>

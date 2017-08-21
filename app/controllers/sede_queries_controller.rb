@@ -2,7 +2,7 @@ class SEDEQueriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_query, except: [:index, :new, :create]
   before_action :check_modify, except: [:show, :index, :new, :create]
-  before_action :check_create, except: [:edit, :update, :destroy]
+  before_action :check_create, except: [:edit, :update, :destroy, :fetch]
 
   def index
     @queries = SEDEQuery.all
@@ -50,6 +50,20 @@ class SEDEQueriesController < ApplicationController
       flash[:danger] = 'Failed to remove query.'
       render :show
     end
+  end
+
+  def fetch
+    if @query.last_fetch <= 1.day.ago
+      if @query.fetch
+        flash[:success] = 'Successfully fetched fresh data.'
+        @query.update(last_fetch: DateTime.now)
+      else
+        flash[:danger] = 'Failed to fetch data.'
+      end
+    else
+      flash[:danger] = 'Data fetched within the last day; not re-fetching this early.'
+    end
+    redirect_to sede_query_path(@query)
   end
 
   private
