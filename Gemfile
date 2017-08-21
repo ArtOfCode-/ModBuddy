@@ -25,6 +25,7 @@ gem 'memory_profiler', '~> 0.9'
 gem 'flamegraph', '~> 0.9'
 gem 'stackprof', '~> 0.2'
 gem 'fast_stack', '~> 0.2'
+gem 'jquery-turbolinks'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -1,0 +1,12 @@
+<% if counts[user_id.to_i].present? && counts[user_id.to_i] >= 1 %>
+  <em>Already reviewed</em>
+<% else %>
+  <%= form_tag submit_review_path(format: :js), method: :post, remote: true, class: "form-inline" do %>
+    <%= hidden_field_tag :query_id, query.id %>
+    <%= hidden_field_tag :result_index, ind %>
+    <%= hidden_field_tag :stack_user_id, user_id %>
+
+    <%= select_tag :result_type_id, options_from_collection_for_select(@types, 'id', 'name'), include_blank: true, class: 'form-control input-sm' %>
+    <%= submit_tag 'Submit', class: 'btn btn-xs btn-primary' %>
+  <% end %>
+<% end %>

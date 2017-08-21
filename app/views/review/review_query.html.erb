@@ -1,0 +1,23 @@
+<h3>Reviewing Query #<%= @query.id %></h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <% @data[0].each do |h| %>
+        <th><%= h %></th>
+      <% end %>
+      <th></th>
+    </tr>
+  </thead>
+  <% if @data.size >= 2 %>
+    <tbody>
+      <% @data[1..-1].each_with_index do |r, i| %>
+        <tr id="result-<%= i %>">
+          <% r.each do |d| %>
+            <td><%= d %></td>
+          <% end %>
+          <td><%= render 'form', query: @query, ind: i, user_id: r[0], counts: @results %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>

@@ -1,0 +1,6 @@
+<% if @status %>
+  $("#result-<%= params[:result_index] %>").fadeOut(700, function() { $(this).remove(); });
+<% else %>
+  $("#result-<%= params[:result_index] %>").children("td").last()
+    .html('<span class="text-danger"><span class="glyphicon glyphicon-remove-circle"></span> Failed to save</span>');
+<% end %>

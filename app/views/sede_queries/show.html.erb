@@ -1,5 +1,6 @@
 <h3>Query #<%= @query.id %></h3>
 <p>This query fetches data about <%= @query.offense_type.name %> from <%= link_to @query.url, @query.url %>.</p>
+<p><%= link_to 'Query Review', review_sede_query_path(@query) %></p>
 
 <h4>Latest data <span class="text-muted">(fetched <%= time_ago_in_words @query.last_fetch %> ago)</span>
   <%= link_to 'Fetch now', fetch_sede_query_path(@query), method: :post, class: 'btn btn-xs btn-primary' %></h4>

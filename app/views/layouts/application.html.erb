@@ -6,6 +6,7 @@
 
     <%= stylesheet_link_tag    'application', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' %>
     <%= javascript_include_tag 'application', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -26,6 +27,14 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><%= link_to 'queries', sede_queries_path %></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li><%= link_to 'sign out', destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to 'sign in', new_user_session_path %></li>
+              <li><%= link_to 'sign up', new_user_registration_path %></li>
+            <% end %>
           </ul>
         </div>
       </div>

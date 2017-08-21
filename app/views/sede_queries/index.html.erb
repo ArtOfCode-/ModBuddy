@@ -29,4 +29,6 @@
   </tbody>
 </table>
 
-<%= link_to 'New query', new_sede_query_path %>
+<% if user_signed_in? && (current_user.has_role?(:query_creator) || current_user.has_role?(:admin)) %>
+  <%= link_to 'New query', new_sede_query_path %>
+<% end %>
