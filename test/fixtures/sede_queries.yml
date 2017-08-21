@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: MyString
+  offense_type: one
+  last_fetch: 2017-08-21 12:07:47
+
+two:
+  url: MyString
+  offense_type: two
+  last_fetch: 2017-08-21 12:07:47

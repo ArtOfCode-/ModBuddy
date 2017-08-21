@@ -1,0 +1,2 @@
+class OffenseType < ApplicationRecord
+end
