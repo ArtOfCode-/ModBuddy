@@ -7,7 +7,7 @@ end
 
 
 gem 'rails', '~> 5.1.3'
-gem 'mysql2'
+gem 'mysql2', '~> 0.4'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -19,6 +19,12 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.3'
 gem 'rolify', '~> 5.1'
 gem 'httparty', '~> 0.15'
+
+gem 'rack-mini-profiler', '~> 0.10'
+gem 'memory_profiler', '~> 0.9'
+gem 'flamegraph', '~> 0.9'
+gem 'stackprof', '~> 0.2'
+gem 'fast_stack', '~> 0.2'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

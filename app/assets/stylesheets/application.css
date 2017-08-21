@@ -37,3 +37,8 @@
     color: gray;
     text-decoration: underline;
 }
+
+body .profiler-results {
+    position: absolute;
+    top: 52px;
+}
