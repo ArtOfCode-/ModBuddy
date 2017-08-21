@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Modbuddy</title>
+    <title>ModBuddy</title>
     <%= csrf_meta_tags %>
 
+    <%= stylesheet_link_tag    'application', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ModBuddy</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'queries', sede_queries_path %></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="col-md-10 col-md-offset-1">
+      <% flash.each do |key, value| %>
+        <% key = 'info' if key == 'notice' %>
+        <% key = 'danger' if key == 'alert' %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

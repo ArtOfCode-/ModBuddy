@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+.auth-form {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.auth-form input[type=submit] {
+    width: 100%;
+}
+
+.auth-form input {
+    margin-bottom: 5px;
+}
+
+.auth-form a, .auth-form a:visited {
+    color: gray;
+    text-decoration: none;
+}
+
+.auth-form a:hover, .auth-form a:active {
+    color: gray;
+    text-decoration: underline;
+}

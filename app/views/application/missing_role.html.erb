@@ -1,0 +1,14 @@
+<div class="col-md-4 col-md-offset-4">
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title"><span class="glyphicon glyphicon-remove-circle"></span> Check Your Privilege</h3>
+    </div>
+    <div class="panel-body">
+      <p>Your account is missing the permissions required to access this page.</p>
+
+      <% if @role.present? %>
+        <p>You need to have the <strong><%= @role.name %></strong> permission.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

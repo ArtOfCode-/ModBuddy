@@ -8,13 +8,13 @@ class ApplicationController < ActionController::Base
         render :missing_role
       end
     end
+  end
 
-    define_method "admin_or_role" do |req, **opts|
-      opts[:scope] ||= nil
-      unless current_user.present? && (current_user.has_role?(:admin) || current_user.has_role?(req, opts[:scope]))
-        @role = r
-        render :missing_role
-      end
+  def admin_or_role(req, **opts)
+    opts[:scope] ||= nil
+    unless current_user.present? && (current_user.has_role?(:admin) || current_user.has_role?(req, opts[:scope]))
+      @role = Role.find_by name: req
+      render :missing_role
     end
   end
 end

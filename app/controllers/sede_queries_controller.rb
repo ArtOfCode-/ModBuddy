@@ -1,7 +1,8 @@
 class SEDEQueriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :set_query, except: [:index]
-  before_action :check_permissions, except: [:show, :index]
+  before_action :set_query, except: [:index, :new, :create]
+  before_action :check_modify, except: [:show, :index, :new, :create]
+  before_action :check_create, except: [:edit, :update, :destroy]
 
   def index
     @queries = SEDEQuery.all
@@ -15,6 +16,7 @@ class SEDEQueriesController < ApplicationController
     @query = SEDEQuery.new query_params
     @query.last_fetch = Date.new(1970, 1, 1)
     if @query.save
+      current_user.add_role(:query_owner, @query)
       flash[:success] = 'Created your query. Use the controls on this page to start using it.'
       redirect_to sede_query_path(@query)
     else
@@ -55,8 +57,12 @@ class SEDEQueriesController < ApplicationController
     @query = SEDEQuery.find params[:id]
   end
 
-  def check_permissions
+  def check_modify
     admin_or_role :query_owner, scope: @query
+  end
+
+  def check_create
+    admin_or_role :query_creator
   end
 
   def query_params

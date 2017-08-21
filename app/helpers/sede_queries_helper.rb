@@ -1,2 +1,2 @@
-module SedeQueriesHelper
+module SEDEQueriesHelper
 end
