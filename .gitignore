@@ -25,3 +25,4 @@
 .idea
 
 config/database.yml
+public/query_data/*
