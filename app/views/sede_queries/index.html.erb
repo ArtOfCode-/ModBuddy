@@ -8,7 +8,7 @@
       <th>Data URL</th>
       <th>Last retrieved</th>
       <th>Owner</th>
-      <th></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
   <tbody>
@@ -19,7 +19,14 @@
         <td><%= time_ago_in_words q.last_fetch %> ago</td>
         <td><%= User.with_role(:query_owner, q).first.id %></td>
         <td><%= link_to 'Details', sede_query_path(q) %></td>
+        <td>
+          <% if user_signed_in? && (current_user.has_role?(:query_owner, q) || current_user.has_role?(:admin)) %>
+            <%= link_to 'Edit', edit_sede_query_path(q) %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'New query', new_sede_query_path %>

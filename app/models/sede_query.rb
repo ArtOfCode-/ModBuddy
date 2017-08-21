@@ -1,5 +1,6 @@
 class SEDEQuery < ApplicationRecord
   belongs_to :offense_type
+  has_many :review_results
   resourcify
 
   def fetch

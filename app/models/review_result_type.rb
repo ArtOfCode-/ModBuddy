@@ -1,5 +1,4 @@
-class OffenseType < ApplicationRecord
-  has_many :sede_queries
+class ReviewResultType < ApplicationRecord
   has_many :review_results
 
   validates :name, uniqueness: true

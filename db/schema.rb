@@ -10,13 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821111152) do
+ActiveRecord::Schema.define(version: 20170821152603) do
 
   create_table "offense_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "review_result_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "review_results", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "review_result_type_id"
+    t.bigint "offense_type_id"
+    t.bigint "sede_query_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offense_type_id"], name: "index_review_results_on_offense_type_id"
+    t.index ["review_result_type_id"], name: "index_review_results_on_review_result_type_id"
+    t.index ["sede_query_id"], name: "index_review_results_on_sede_query_id"
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -64,5 +82,8 @@ ActiveRecord::Schema.define(version: 20170821111152) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "review_results", "offense_types"
+  add_foreign_key "review_results", "review_result_types"
+  add_foreign_key "review_results", "sede_queries"
   add_foreign_key "sede_queries", "offense_types"
 end

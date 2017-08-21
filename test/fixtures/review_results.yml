@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  review_result_type: one
+  offense_type: one
+  sede_query: one
+
+two:
+  review_result_type: two
+  offense_type: two
+  sede_query: two
