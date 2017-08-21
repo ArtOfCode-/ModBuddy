@@ -1,0 +1,24 @@
+<h3>Query #<%= @query.id %></h3>
+<p>This query fetches data about <%= @query.offense_type.name %> from <%= link_to @query.url, @query.url %>.</p>
+
+<h4>Latest data <span class="text-muted">(fetched <%= time_ago_in_words @query.last_fetch %> ago)</span></h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <% @data[0].each do |h| %>
+        <th><%= h %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <% if @data.size >= 2 %>
+    <tbody>
+      <% @data[1..-1].each do |r| %>
+        <tr>
+          <% r.each do |d| %>
+            <td><%= d %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>

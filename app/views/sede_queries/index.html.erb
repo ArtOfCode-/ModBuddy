@@ -1,0 +1,23 @@
+<h3>SEDE Queries</h3>
+<p>These queries provide the data source for collecting lists of things for community moderation to review.</p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="text-muted">ID</th>
+      <th>Data URL</th>
+      <th>Last retrieved</th>
+      <th>Owner</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @queries.each do |q| %>
+      <tr>
+        <td class="text-muted"><%= q.id %></td>
+        <td><%= q.url %></td>
+        <td><%= time_ago_in_words q.last_fetched %> ago</td>
+        <td><%= User.with_role(:query_owner, q).first.id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,26 @@
+<%= form_for @query, url: url do |f| %>
+  <% if @query.errors.any? %>
+    <div class="alert alert-danger">
+      <p>The following errors prevented the query being saved:</p>
+      <ul>
+        <% @query.errors.full_messages.each do |m| %>
+          <li><%= m %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :url, "Data URL" %> <em class="text-muted">(this should be the CSV URL)</em><br/>
+    <%= f.url_field :url, class: 'form-control' %>
+  </div><br/>
+
+  <div class="field">
+    <%= f.label :offense_type_id, "Offense Type" %> <em class="text-muted">(what does this query scan for?)</em><br/>
+    <%= f.select :offense_type_id, options_from_collection_for_select(OffenseType.all, 'id', 'name'), { include_blank: true }, class: 'form-control' %>
+  </div><br/>
+
+  <div class="actions">
+    <%= f.submit 'Save', class: 'btn btn-primary' %>
+  </div>
+<% end %>

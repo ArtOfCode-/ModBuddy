@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise', '~> 4.3'
 gem 'rolify', '~> 5.1'
+gem 'httparty', '~> 0.15'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

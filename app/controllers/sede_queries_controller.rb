@@ -26,6 +26,7 @@ class SEDEQueriesController < ApplicationController
   end
 
   def show
+    @data = @query.load
   end
 
   def edit
